@@ -3,15 +3,15 @@
 
 Encrypt::Encrypt(QObject *parent) :
     QObject(parent),
-    output(stdout),
-    input(stdin)
+    cout(stdout),
+    cin(stdin)
 {
 }
 
 // Function get simple text from input
 bool Encrypt::getString()
 {
-    textToEncrypt = input.readLine();
+    textToEncrypt = cin.readLine();
 
     // Checking input text is correct
     if(!checkString(textToEncrypt)) {

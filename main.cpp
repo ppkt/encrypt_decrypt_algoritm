@@ -8,9 +8,9 @@ int main(int argc, char *argv[])
 
     Encrypt enc;
     Decrypt dec;
-    QTextStream output(stdout);
+    QTextStream cout(stdout);
 
-    output << "Podaj tekst do zaszyfrowania" << endl;
+    cout << "Podaj tekst do zaszyfrowania" << endl;
     bool good;
     do {
         good = enc.getString();
@@ -18,10 +18,10 @@ int main(int argc, char *argv[])
 
     if(enc.encryptText()) {
         if(!dec.decryptText(enc.getEncrypted()))
-            output << "Nie można odszyfrować!" << endl;
+            cout << "Nie można odszyfrować!" << endl;
     }
     else
-        output << "Nie można zakodować!" << endl;
+        cout << "Nie można zakodować!" << endl;
 
     return 1;
 }

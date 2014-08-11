@@ -18,7 +18,7 @@ signals:
 public slots:
 
 private:
-    QTextStream output;
+    QTextStream cout;
 };
 
 #endif // DECRYPT_H

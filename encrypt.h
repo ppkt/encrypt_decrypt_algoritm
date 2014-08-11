@@ -23,8 +23,8 @@ signals:
 public slots:
 
 private:
-    QTextStream output;
-    QTextStream input;
+    QTextStream cout;
+    QTextStream cin;
     QString encrypted;
 
 
