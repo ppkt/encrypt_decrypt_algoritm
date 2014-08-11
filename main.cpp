@@ -8,18 +8,20 @@ int main(int argc, char *argv[])
 
     Encrypt enc;
     Decrypt dec;
+    QTextStream output(stdout);
 
+    output << "Podaj tekst do zaszyfrowania" << endl;
     bool good;
     do {
         good = enc.getString();
     }while(!good);
 
     if(enc.encryptText()) {
-        if(!dec.decryptText(enc.encrypted))
-            qDebug() << "Nie można odszyfrować!";
+        if(!dec.decryptText(enc.getEncrypted()))
+            output << "Nie można odszyfrować!" << endl;
     }
     else
-        qDebug() << "Nie można zakodować!";
+        output << "Nie można zakodować!" << endl;
 
     return 1;
 }

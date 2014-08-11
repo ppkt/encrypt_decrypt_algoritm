@@ -1,7 +1,9 @@
 #include "decrypt.h"
+#include <QFile>
 
 Decrypt::Decrypt(QObject *parent) :
-    QObject(parent)
+    QObject(parent),
+    output(stdout)
 {
 }
 
@@ -26,9 +28,9 @@ bool Decrypt::decryptText(QString encrypted)
 
     // Correct decrypted text has these same counts
     if(decrypted.count() == encrypted.count()) {
-        qDebug() << "Zakodowany:" << encrypted;
-        qDebug() << "Odkodowany:" << decrypted;
-        qDebug() << "-------------";
+        this->output << "Zakodowany:" << encrypted << endl;
+        this->output << "Odkodowany:" << decrypted << endl;
+        this->output << "-------------" << endl;
         return true;
     }
 

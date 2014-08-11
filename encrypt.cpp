@@ -1,14 +1,16 @@
 #include "encrypt.h"
+#include <QRegExp>
 
 Encrypt::Encrypt(QObject *parent) :
-    QObject(parent)
+    QObject(parent),
+    output(stdout),
+    input(stdin)
 {
 }
 
 // Function get simple text from input
 bool Encrypt::getString()
 {
-    QTextStream input(stdin);
     textToEncrypt = input.readLine();
 
     // Checking input text is correct
@@ -27,17 +29,8 @@ bool Encrypt::getString()
 // if text is valid return false
 bool Encrypt::checkString(QString text)
 {
-    for(int i = 0; i < text.count(); i++) {
-        int ascii = text.at(i).toLatin1();
-
-        if(ascii != 32) // if asii != space
-            if(!(ascii >= 65 && ascii <= 90))   // A-Z
-                if(!(ascii >= 97 && ascii <= 122))  // a-z
-                    if(!(ascii >= 48 && ascii <= 57))   // 0-9
-                        return false;
-
-    }
-    return true;
+    QRegExp checker("^([A-Za-z0-9 ]+)$");
+    return checker.exactMatch(text);
 }
 
 // Function encrypt text
@@ -59,7 +52,7 @@ bool Encrypt::encryptText()
 
     // Correct encrypted text has these same counts
     if(encrypted.count() == textToEncrypt.count()) {
-        qDebug() << "Twój tekst:" << textToEncrypt;
+        qDebug() << trUtf8("Twój tekst:").toStdString().c_str() << textToEncrypt;
         qDebug() << "Zakodowano:" << encrypted;
         qDebug() << "-------------";
         return true;

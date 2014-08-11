@@ -17,11 +17,16 @@ public:
 
     bool getString();
     bool encryptText();
-    QString encrypted;
-
+    QString getEncrypted() const { return this->encrypted; }
 signals:
 
 public slots:
+
+private:
+    QTextStream output;
+    QTextStream input;
+    QString encrypted;
+
 
 };
 

@@ -3,6 +3,8 @@
 
 #include <QObject>
 #include <QDebug>
+#include <QTextStream>
+
 
 class Decrypt : public QObject
 {
@@ -15,6 +17,8 @@ signals:
 
 public slots:
 
+private:
+    QTextStream output;
 };
 
 #endif // DECRYPT_H
